@@ -19,3 +19,7 @@
 "vpc-private_subnets" = ["10.0.2.0/24"]
 "vpc-enable_nat_gateway"  = "true"
 "vpc-azs" = ["ap-southeast-1a" , "ap-southeast-1b"]
+
+# bastion
+"bastion_class"  = "t2.micro"
+"bastion_ami_id"  = "ami-77af2014"

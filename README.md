@@ -1,75 +1,46 @@
-# terraform-aws
-Basic terraform + aws foundation, leveraging on modules when possible. It's a base to build on.
+# A Terraform approach to building a solid infrastructure foundation on AWS
+This is a WIP of a basic terraform + aws foundation code approach, trying to follow best practices. It's a base to build on. Reading the doc at [https://www.terraform.io/docs/index.html](https://www.terraform.io/docs/index.html) is highly advised.
+
+## Setup
 
 Requires:
-terraform binaries
-tested with versions:
+- terraform binaries on your machine - if you are a mac user, you can use the package management system `homebrew` https://brew.sh/
+(installing it is very easy). Once you are done, open a terminal and perform a `brew update && brew upgrade && brew install terraform`
+- AWS account and the proper set of permission, plus a key-pair.
+
+**Note:** you might incur some small charges from AWS (unless you are still on the free tier), so it's highly recommended to destroy the infra if you are not using it.
+
+tested with:
 - Terraform v0.9.8
-- 
 
+To run this you need to clone this repository on your local machine, then with the console go to the `Singapore` directory. Inside the `terraform.tfvars` are a few variables to set: the `access_key`, the `secret_key` and the `keypair_name`.
 
-
-For instance, a `terraform.tfvars` with the following variables
-
-```terraform
-# AWS Credz and region
-"access_key" = "change_for_your_access_key"
-"secret_key" = "change_for_your_secret_key"
-"region" = "ap-southeast-1"
-
-# EC2 Key Pair
-"keypair_name" = "AwsDevops"
-
-# Tags
-"name"        = "Singapore-VPC"
-"environment" = "Development"
-
-# networking
-"vpc-cidr"    = "10.0.0.0/16"
-"vpc-tenancy" = "default"
-"vpc-public_subnets"  = ["10.0.0.0/24"]
-"vpc-private_subnets" = ["10.0.2.0/24"]
-"vpc-enable_nat_gateway"  = "true"
-"vpc-azs" = ["ap-southeast-1a" , "ap-southeast-1b"]
+Once done, you need to ensure terraform works properly
+```shell
+| ~/Development/Singapore @ nicolasmbp (nicolasmas)
+| => terraform --version
+Terraform v0.9.11
 ```
 
-Will create the following VPC
+## Running it
 
-**Note:**
-- The main route table is not used, we rather create two public/private and we use them instead
-
-- Each private subnet comes with a NAT Gateway because we set the parameter `"vpc-enable_nat_gateway"  = "true"` and consequently is associated an **EIP** addresse.
-
-- Terraform does not check the network addressing logic, so you need to know what to input for the CIDR blocks.
-
-![Simple VPC](README_ressources/Singapore-VPC.png?raw=true "Simple VPC")
-
-A `terraform destroy` will bring the whole stack down and destroy all the ressources.
-
-Modifying the `terraform.tfvars` like this:
-
-```terraform
-# AWS Credz and region
-"access_key" = "change_for_your_access_key"
-"secret_key" = "change_for_your_secret_key"
-"region" = "ap-southeast-1"
-
-# EC2 Key Pair
-"keypair_name" = "AwsDevops"
-
-# Tags
-"name"        = "Singapore-VPC"
-"environment" = "Development"
-
-# networking
-"vpc-cidr"    = "10.0.0.0/16"
-"vpc-tenancy" = "default"
-"vpc-public_subnets"  = ["10.0.0.0/24","10.0.1.0/24"]
-"vpc-private_subnets" = ["10.0.2.0/24","10.0.3.0/24"]
-"vpc-enable_nat_gateway"  = "true"
-"vpc-azs" = ["ap-southeast-1a" , "ap-southeast-1b"]
+First you need to retrieve the modules (for example:)
+```shell
+| ~/Development/Singapore @ nicolasmbp (nicolas)
+| => terraform get
+Get: file:///modules/m-vpc
+Get: file:///modules/m-bastion
 ```
 
-Will create the following VPC (adding subnets will populate the second availability zone in the Singapore region).
+You are all set. Basic commands are:
+```shell
+terraform validate #syntax validation
+terraform plan  #dry run
+terraform apply #execute the code against AWS
+terraform destroy #remove everything you just created from AWS
+```
 
-![Simple 2AZ VPC](README_ressources/Singapore-2azs-VPC.png?raw=true "Simple VPC")
+## Examples
+
+- [A simple VPC in the Singapore region](VPC_ONLY.md)
+- A simple VPC with a bastion host in an autoscale group

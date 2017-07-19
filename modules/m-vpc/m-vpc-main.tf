@@ -34,7 +34,7 @@ resource "aws_internet_gateway" "igw" {
 resource "aws_route_table" "public" {
   vpc_id           = "${aws_vpc.vpc.id}"
   propagating_vgws = ["${var.m_public_propagating_vgws}"]
-  tags             = "${merge(var.m_tags, map("Name", format("%s-rt-public", var.m_o_name)))}"
+  tags             = "${merge(var.m_tags, map("Name", format("%s-rt-public-%s", var.m_o_name, element(var.m_azs, count.index))))}"
 }
 ## Routes for the public route table
 ### IGW route

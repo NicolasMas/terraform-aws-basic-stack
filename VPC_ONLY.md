@@ -1,10 +1,7 @@
-<<<<<<< HEAD
 # The VPC module
 
 [Back](README.md)
 
-=======
->>>>>>> 8ed557c922da775bc6bf8beef6d8383f7f4afe55
 For instance, a `terraform.tfvars` with the following variables
 
 ```terraform

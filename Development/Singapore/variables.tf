@@ -20,5 +20,5 @@ variable "vpc-azs"  {type = "list"}
 #variable "enable_bastion_autoscale" {type = "string"}
 variable "bastion_class" {type = "string"}
 variable "bastion_ami_id" {type = "string"}
-#variable "" {type = "string"}
-#variable "" {type = "string"}
+variable "bastion-enabled" {}
+variable "bastion-enabled-autoscale" {}

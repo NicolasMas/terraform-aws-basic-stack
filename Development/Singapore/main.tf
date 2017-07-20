@@ -50,8 +50,9 @@ module "BASTION"{
   m_environment = "${var.environment}"
   # required variables  [terraform - AWS Scope]
   # won't work without it
-  m_enable_bastion   = false
-  m_enable_bastion_autoscale = false
+  #
+  m_enable_bastion   = "${var.bastion-enabled}"
+  m_enable_bastion_autoscale = "${var.bastion-enabled-autoscale}"
 
   # which vpc will the bastion be attached
   m_vpc_id    = "${module.VPC.vpc_id}"

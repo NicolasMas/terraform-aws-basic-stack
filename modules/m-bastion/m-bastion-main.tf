@@ -45,6 +45,7 @@ resource "aws_launch_configuration" "bastion" {
   instance_type = "${var.m_bastion_class}"
   security_groups = ["${aws_security_group.bastion_security_group.id}"]
   key_name        = "${var.m_key_name}"
+  user_data       = "${file("${path.module}/scripts/bastion.sh")}"
 
   count = "${var.m_enable_bastion_autoscale ? 1 : 0}"
 

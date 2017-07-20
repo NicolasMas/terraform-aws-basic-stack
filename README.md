@@ -43,4 +43,8 @@ terraform destroy #remove everything you just created from AWS
 ## Examples
 
 - [A simple VPC in the Singapore region](VPC_ONLY.md)
+<<<<<<< HEAD
 - [A simple VPC with a bastion host in an autoscale group](VPC_BASTION.md)
+=======
+- A simple VPC with a bastion host in an autoscale group
+>>>>>>> 8ed557c922da775bc6bf8beef6d8383f7f4afe55

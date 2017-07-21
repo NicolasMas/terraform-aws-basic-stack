@@ -1,7 +1,5 @@
-# AWS Credz and region
-"access_key" = "your_acess_key"
-"secret_key" = "your_secret_key"
-#We use Singapore
+# AWS
+# We use Singapore
 "region" = "ap-southeast-1"
 
 # EC2 Key Pair

@@ -17,5 +17,4 @@ variable "vpc-azs"  {type = "list"}
 
 # Contract with m-bastion-module
 variable "bastion_class" {type = "string"}
-variable "bastion_ami_id" {type = "string"}
 variable "bastion-enabled-autoscale" {type = "string"}

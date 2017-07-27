@@ -6,6 +6,29 @@
 # 3 - Autoscaling (if Autoscaling = true)
 # 3 - Bastion host (if Autoscaling = false)
 
+# Latest amazon machine, hvm available for the region. To be used in the
+# launch_configuration group
+data "aws_ami" "bastion" {
+  most_recent = true
+  filter {
+    name = "name"
+    values = ["amzn-ami*"]
+  }
+  filter {
+    name = "virtualization-type"
+    values = ["hvm"]
+  }
+  filter {
+    name = "architecture"
+    values = ["x86_64"]
+  }
+
+  filter {
+  name   = "owner-alias"
+  values = ["amazon"]
+  }
+}
+
 
 # Security Group
 resource "aws_security_group" "bastion_security_group" {
@@ -41,7 +64,8 @@ resource "aws_security_group_rule" "egress_all" {
 # Launch Configuration
 resource "aws_launch_configuration" "bastion" {
   name   = "${var.m_environment} launch configuration for bastion host only"
-  image_id      = "${var.m_bastion_ami_id}"
+#  image_id      = "${var.m_bastion_ami_id}"
+  image_id      = "${data.aws_ami.bastion.id}"
   instance_type = "${var.m_bastion_class}"
   security_groups = ["${aws_security_group.bastion_security_group.id}"]
   key_name        = "${var.m_key_name}"

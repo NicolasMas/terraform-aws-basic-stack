@@ -58,8 +58,8 @@ variable "m_bastion_class" {
   default     = "t2.nano"
 }
 
-variable "m_bastion_ami_id" {
-  type = "string"
-  description = "The ami to be used for the bastion (default is the Amazon Linux - AMI 2017.03.1 (HVM), SSD Volume Type)"
-  default     = "ami-77af2014"
-}
+#variable "m_bastion_ami_id" {
+#  type = "string"
+#  description = "The ami to be used for the bastion (default is the Amazon Linux - AMI 2017.03.1 (HVM), SSD Volume Type)"
+#  default     = "ami-77af2014"
+#}

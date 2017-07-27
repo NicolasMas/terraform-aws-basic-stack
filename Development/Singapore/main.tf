@@ -55,7 +55,6 @@ module "BASTION"{
   m_vpc_id    = "${module.VPC.vpc_id}"
   # launch configuration
   m_bastion_class = "${var.bastion_class}"
-  m_bastion_ami_id  = "${var.bastion_ami_id}"
   m_key_name  = "${var.keypair_name}"
   # autoscale group
   m_public_subnets  = "${module.VPC.public_subnets}"

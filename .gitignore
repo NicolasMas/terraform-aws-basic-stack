@@ -5,7 +5,8 @@
 # Module directory
 .terraform/
 
-
+# Temp files
+*.tmp
 
 # MacOS Related
 # From: https://github.com/github/gitignore/blob/master/Global/macOS.gitignore

@@ -23,7 +23,7 @@
 #,"10.0.3.0/24"
 
 # Bastion Configuration
-"bastion-enabled-autoscale" = false
+"bastion-enabled-autoscale" = true
 
 "bastion_class"             = "t2.micro"
 "bastion_ami_id"            = "ami-77af2014"

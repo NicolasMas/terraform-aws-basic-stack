@@ -36,7 +36,7 @@ module "VPC"{
   # custom variables    [this script - Scope]
     m_o_memory           = "1G"
 
-  # tagging
+  # Generic tagging across all modules
   m_tags {
     "Terraform" = "true"
     "Environment" = "${var.environment}"

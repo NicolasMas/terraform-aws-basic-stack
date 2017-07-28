@@ -65,8 +65,7 @@ resource "aws_security_group_rule" "egress_all" {
 # Launch Configuration
 resource "aws_launch_configuration" "bastion" {
   name   = "${var.m_environment} launch configuration for bastion host only"
-#  image_id      = "${var.m_bastion_ami_id}"
-  image_id      = "${data.aws_ami.bastion.id}"
+  image_id      = "${data.aws_ami.bastion.id}" #output from the data-source
   instance_type = "${var.m_bastion_class}"
   security_groups = ["${aws_security_group.bastion_security_group.id}"]
   key_name        = "${var.m_key_name}"
@@ -106,18 +105,6 @@ resource "aws_autoscaling_group" "bastion" {
   ]
 
   count = "${var.m_enable_bastion_autoscale ? 1 : 0}"
-
-#  tag {
-#    key                 = "Name"
-#    value               = "${var.name}"
-#    propagate_at_launch = true
-#  }
-
-#  tag {
-#    key                 = "EIP"
-#    value               = "${var.eip}"
-#    propagate_at_launch = true
-#  }
 
   lifecycle {
     create_before_destroy = true

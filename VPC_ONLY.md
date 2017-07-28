@@ -5,9 +5,7 @@
 For instance, a `terraform.tfvars` with the following variables
 
 ```terraform
-# AWS Credz and region
-"access_key" = "change_for_your_access_key"
-"secret_key" = "change_for_your_secret_key"
+# AWS region
 "region" = "ap-southeast-1"
 
 # EC2 Key Pair
@@ -43,8 +41,6 @@ For the example, the region "Singapore" has two AZ ("ap-southeast-1a" and "ap-so
 
 ```terraform
 # AWS Credz and region
-"access_key" = "change_for_your_access_key"
-"secret_key" = "change_for_your_secret_key"
 "region" = "ap-southeast-1"
 
 # EC2 Key Pair

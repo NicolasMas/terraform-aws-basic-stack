@@ -6,8 +6,9 @@
 # 3 - Autoscaling (if Autoscaling = true)
 # 3 - Bastion host (if Autoscaling = false)
 
-# Latest amazon machine, hvm available for the region. To be used in the
+# Latest amazon nat machine, hvm available for the region. To be used in the
 # launch_configuration group
+# TMP: amzn-ami-vpc-nat-hvm-2017.03.1.20170623-x86_64-ebs (ami-36af2055)
 data "aws_ami" "bastion" {
   most_recent = true
   filter {

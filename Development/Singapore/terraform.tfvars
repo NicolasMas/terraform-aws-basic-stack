@@ -24,5 +24,4 @@
 
 # Bastion Configuration
 "bastion-enabled-autoscale" = true
-
 "bastion_class"             = "t2.micro"

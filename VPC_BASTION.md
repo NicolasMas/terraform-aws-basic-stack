@@ -9,7 +9,8 @@ On top of our VPC, we can add a bastion host, inside a launch_configuration and 
 
 **Note:** Setting the parameter:
  ```terraform
- "bastion-enabled-autoscale" = false```
+"bastion-enabled-autoscale" = false
+ ```
 
 Will skip the creation of the bastion and the autoscale architecture altogether. In other word, either the bastion comes in an autoscaling context or it does not come at all. (terraform does not allow yet a clean way to implement a "if enabled_bastion == true, execute the module, else don't").
 

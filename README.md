@@ -25,8 +25,9 @@ Terraform v0.9.11
 
 ## Running it
 
-AWS credential need to be stored on you local machine, under the `~/.aws/credentials` file of your machine (MacOSX and Linux)
+### AWS credentials setup
 
+AWS credentials need to be stored on your local machine, under the `~/.aws/credentials` file (MacOSX and Linux)
 ```shell
 | ~/Development/Singapore @ nicolasmbp (nicolasmas)
 | => cat ~/.aws/credentials
@@ -42,22 +43,23 @@ It can be done with the following `AWS CLI` command (replace the profile name wi
 ```shell
 aws configure --profile terraform-dev
 ```
-And follow the instruction. Once this is done, please modify the `main.tf` profile value with the profile you just created.
-
+And follow the instructions. Once this is done, please modify the `main.tf` profile value with the profile you just created.
 ```shell
 provider "aws" {
     profile = "terraform-dev"
     region = "${var.region}"
 }
 ```
+### Retrieving the modules
 
-First you need to retrieve the modules (for example:)
+You need to retrieve the modules (for example:)
 ```shell
 | ~/Development/Singapore @ nicolasmbp (nicolas)
 | => terraform get
 Get: file:///modules/m-vpc
 Get: file:///modules/m-bastion
 ```
+### Building the infrastructure
 
 You are all set. Basic commands are:
 ```shell

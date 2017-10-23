@@ -5,9 +5,7 @@
 For instance, a `terraform.tfvars` with the following variables
 
 ```terraform
-# AWS Credz and region
-"access_key" = "change_for_your_access_key"
-"secret_key" = "change_for_your_secret_key"
+# AWS region
 "region" = "ap-southeast-1"
 
 # EC2 Key Pair
@@ -25,7 +23,54 @@ For instance, a `terraform.tfvars` with the following variables
 "vpc-enable_nat_gateway"  = "true"
 "vpc-azs" = ["ap-southeast-1a" , "ap-southeast-1b"]
 ```
+And the following `main.tf`
+```terraform
+#
+# Singapore Development Infrastructure
+#
 
+provider "aws" {
+    profile = "terraform-dev"
+    region = "${var.region}"
+}
+
+# VPC from modules
+# Loading the module and passing variables
+module "VPC"{
+  source = "../../modules/m-vpc"
+  # required variables  [terraform - AWS Scope]
+  # won't work without it
+  # VPC
+  m_cidr                 = "${var.vpc-cidr}"
+  m_enable_dns_support   = true
+  m_enable_dns_hostnames = true
+  # subnets
+  ## public
+  m_public_subnets  = "${var.vpc-public_subnets}"
+  ## private
+  m_private_subnets = "${var.vpc-private_subnets}"
+  # nat gateway
+  # enabling nat gateways for the private subnets allows instances to connect
+  # to internet (but they can't be accessed from internet)
+  m_enable_nat_gateway  = "${var.vpc-enable_nat_gateway}"
+  # availability zones
+  m_azs = "${var.vpc-azs}"
+
+  # optional variables  [terraform - AWS Scope]
+  # recommended to setup
+    m_o_name             = "${var.name}"
+    m_o_instance_tenancy   = "${var.vpc-tenancy}"
+  # custom variables    [this script - Scope]
+    m_o_memory           = "1G"
+
+  # Generic tagging across all modules
+  m_tags {
+    "Terraform" = "true"
+    "Environment" = "${var.environment}"
+  }
+
+}
+```
 Will create the following VPC
 
 **Note:**
@@ -43,8 +88,6 @@ For the example, the region "Singapore" has two AZ ("ap-southeast-1a" and "ap-so
 
 ```terraform
 # AWS Credz and region
-"access_key" = "change_for_your_access_key"
-"secret_key" = "change_for_your_secret_key"
 "region" = "ap-southeast-1"
 
 # EC2 Key Pair

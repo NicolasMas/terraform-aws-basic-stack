@@ -13,6 +13,7 @@ Requires:
 
 tested with:
 - Terraform v0.9.11
+- Terraform v10.07
 
 To run this you need to clone this repository on your local machine, then with the console go to the `Singapore` directory.
 
@@ -20,7 +21,7 @@ Once done, you need to ensure terraform works properly
 ```shell
 | ~/Development/Singapore @ nicolasmbp (nicolasmas)
 | => terraform --version
-Terraform v0.9.11
+Terraform v10.07
 ```
 
 ## Running it

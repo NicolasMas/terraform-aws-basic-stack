@@ -17,7 +17,7 @@
 "vpc-enable_nat_gateway" = true
 "enable_dns_support"     = true
 "enable_dns_hostnames"   = true
-"vpc-azs"                = ["ap-southeast-1a" , "ap-southeast-1b"]
+"vpc-azs"                = ["ap-southeast-1a" , "ap-southeast-1b" , "ap-southeast-1c"]
 
 #,"10.0.1.0/24"
 #,"10.0.3.0/24"
